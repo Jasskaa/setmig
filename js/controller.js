@@ -2,6 +2,7 @@ import { Game } from './models.js';
 import { AI } from './ai.js';
 import { View } from './view.js';
 
+
 export class Controller {
     constructor() {
         this.view = new View();
@@ -29,13 +30,21 @@ export class Controller {
         document.getElementById('btn-discard').addEventListener('click', () => this.handleDiscard());
     }
 
-    startGame(mode) {
-        this.game = new Game(mode);
-        if (mode === 'PVE') this.ai = new AI(this.game);
-        this.game.startTurn();
+startGame(mode) {
+    this.game = new Game(mode);
+    if (mode === 'PVE') this.ai = new AI(this.game);
+    this.game.startTurn();
+    
+    // Para PVP, mostrar primero la pantalla de transición
+    if (mode === 'PVP') {
+        this.view.elements.transitionTitle.textContent = `Torn de ${this.game.getActivePlayer().name}`;
+        this.view.showScreen('transition');
+    } else {
+        // Para PVE, ir directamente al juego
         this.view.showScreen('game');
         this.view.renderGame(this.game);
     }
+}
 
     handleHandClick(e) {
         const cardEl = e.target.closest('.playable-card');
@@ -116,4 +125,5 @@ export class Controller {
             }
         }
     }
+
 }
