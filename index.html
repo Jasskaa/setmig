@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virus! - El Joc</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Pantalla d'Inici -->
+    <div id="start-screen" class="screen active">
+        <h1>🦠 VIRUS! 💉</h1>
+        <p>Tria el mode de joc:</p>
+        <button id="btn-pve" class="btn">Jugar contra la Màquina (IA)</button>
+        <button id="btn-pvp" class="btn">Jugar contra un Amic (Local)</button>
+    </div>
+
+    <!-- Pantalla de Transició (Mode Local) -->
+    <div id="transition-screen" class="screen hidden">
+        <h2 id="transition-title">Torn del Jugador</h2>
+        <p>Passa el dispositiu. Assegura't que l'altre jugador no miri!</p>
+        <button id="btn-ready" class="btn">Estic a punt!</button>
+    </div>
+
+    <!-- Pantalla de Joc -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-layout">
+            <!-- Àrea del Rival (A dalt) -->
+            <div id="opponent-area" class="player-area">
+                <h3 id="opponent-name">Rival</h3>
+                <div id="opponent-body" class="body-zone"></div>
+                <div id="opponent-hand" class="hand-zone hidden-cards"></div>
+            </div>
+
+            <!-- Centre de la Taula -->
+            <div class="table-center">
+                <div id="deck" class="pile">
+                    <div class="card card-back">MAZO</div>
+                </div>
+                <div id="turn-indicator">Torn del Jugador 1</div>
+                <div id="discard-pile" class="pile">
+                    <div class="card empty-slot">DESCART</div>
+                </div>
+                <button id="btn-discard" class="btn hidden">Descartar Carta</button>
+            </div>
+
+            <!-- Àrea del Jugador Actiu (A baix) -->
+            <div id="active-area" class="player-area">
+                <h3 id="active-name" class="highlight">Tu</h3>
+                <div id="active-body" class="body-zone"></div>
+                <div id="active-hand" class="hand-zone"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Victòria -->
+    <div id="victory-screen" class="screen hidden">
+        <h1 id="victory-message">Has Guanyat!</h1>
+        <button id="btn-restart" class="btn">Tornar a Jugar</button>
+    </div>
+
+    <!-- Scripts (ES6 Modules) -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+:root {
+    --bg-color: #2c3e50;
+    --red-card: #e74c3c;
+    --blue-card: #3498db;
+    --green-card: #2ecc71;
+    --yellow-card: #f1c40f;
+    --purple-card: #9b59b6;
+    --card-width: 80px;
+    --card-height: 120px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { background-color: var(--bg-color); color: white; overflow-x: hidden; }
+
+.screen { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
+.screen.active { display: flex; }
+
+h1 { font-size: 3rem; margin-bottom: 20px; }
+.btn { padding: 15px 30px; margin: 10px; font-size: 1.2rem; cursor: pointer; border: none; border-radius: 8px; background-color: #34495e; color: white; transition: 0.3s; }
+.btn:hover { background-color: #f39c12; }
+.hidden { display: none !important; }
+
+/* Tauler de Joc */
+.game-layout { display: flex; flex-direction: column; height: 100vh; width: 100%; max-width: 900px; margin: 0 auto; justify-content: space-between; padding: 10px; }
+.player-area { background: rgba(0,0,0,0.2); border-radius: 10px; padding: 10px; min-height: 35vh; display: flex; flex-direction: column; justify-content: space-around; }
+.table-center { display: flex; justify-content: center; align-items: center; gap: 20px; height: 20vh; }
+.body-zone, .hand-zone { display: flex; justify-content: center; gap: 10px; min-height: 130px; flex-wrap: wrap; }
+
+/* Cartes */
+.card {
+    width: var(--card-width); height: var(--card-height); border-radius: 8px; background-color: white; color: black;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem;
+    cursor: pointer; position: relative; transition: transform 0.2s, box-shadow 0.2s; border: 2px solid #ccc;
+}
+.card:hover { transform: translateY(-5px); }
+.card.selected { border: 3px solid #f1c40f; transform: scale(1.1); box-shadow: 0 0 15px #f1c40f; z-index: 10; }
+.card-back { background: repeating-linear-gradient(45deg, #2c3e50, #2c3e50 10px, #34495e 10px, #34495e 20px); color: white; border-color: #fff; cursor: default; }
+
+.empty-slot { background: rgba(255,255,255,0.1); border: 2px dashed #ccc; color: #ccc; cursor: default; }
+.valid-target { border: 3px solid #2ecc71; box-shadow: 0 0 15px #2ecc71; animation: pulse 1.5s infinite; cursor: pointer; }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Colors de Cartes */
+.color-red { background-color: var(--red-card); color: white; border-color: #c0392b; }
+.color-blue { background-color: var(--blue-card); color: white; border-color: #2980b9; }
+.color-green { background-color: var(--green-card); color: white; border-color: #27ae60; }
+.color-yellow { background-color: var(--yellow-card); color: black; border-color: #f39c12; }
+.color-none { background-color: var(--purple-card); color: white; border-color: #8e44ad; }
+
+/* Indicadors d'estat a l'òrgan */
+.attached-cards { display: flex; gap: 5px; position: absolute; bottom: -15px; }
+.mini-card { width: 20px; height: 20px; border-radius: 50%; border: 1px solid white; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.mini-virus { background-color: black; }
+.mini-med { background-color: white; color: black; }
+
+#turn-indicator { font-size: 1.5rem; font-weight: bold; background: #e67e22; padding: 10px 20px; border-radius: 20px; }
+
+@media (max-width: 600px) {
+    .card { --card-width: 60px; --card-height: 90px; font-size: 0.7rem; }
+}
